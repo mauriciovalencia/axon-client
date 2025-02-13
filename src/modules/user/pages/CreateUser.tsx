@@ -7,7 +7,7 @@ const CreateUser = () => {
     const navigate = useNavigate();
 
     const handleSubmit = async (formData: any): Promise<void> => {
-        await new UserService().createUser(formData);
+        await UserService.createUser(formData);
         navigate("/users");
     };
 

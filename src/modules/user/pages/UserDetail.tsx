@@ -7,13 +7,10 @@ import "../styles/UserDetail.css";
 const UserDetail = () => {
     const { id } = useParams();
     const [user, setUser] = useState<User | null>(null);
-    const getUserById = async (id: string): Promise<User> => {
-        return await new UserService().getUserById(id);
-    };
 
     useEffect(() => {
         if (id) {
-            getUserById(id).then(setUser);
+            UserService.getUserById(id).then(setUser);
         }
     }, [id]);
 
