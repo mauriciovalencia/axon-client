@@ -1,27 +1,61 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { User } from "../models/User.ts";
 import UserService from "../services/UserService.ts";
+import { User } from "../models/User.ts";
+import UserForm from "../components/statefull/UserForm.tsx";
 import "../styles/UserDetail.css";
 
-const UserDetail = () => {
-    const { id } = useParams();
-    const [user, setUser] = useState<User | null>(null);
+const UserList = () => {
+    const [users, setUsers] = useState<User[]>([]);
+    const [selectedUser, setSelectedUser] = useState<User | null>(null);
+    const [showForm, setShowForm] = useState(false);
 
     useEffect(() => {
-        if (id) {
-            UserService.getUserById(id).then(setUser);
-        }
-    }, [id]);
+        fetchUsers();
+    }, []);
 
-    if (!user) return <p className="loading">Cargando usuario...</p>;
+    const fetchUsers = async () => {
+        const data = await UserService.getUsers();
+        setUsers(data);
+    };
+
+    const handleEdit = (user: User) => {
+        setSelectedUser(user);
+        setShowForm(true);
+    };
+
+    const handleDelete = async (id: number | null) => {
+        await UserService.deleteUser(id);
+        fetchUsers();
+    };
+
+    const handleSubmit = async (data: User) => {
+        if (selectedUser) {
+            await UserService.updateUser(selectedUser.id!, data);
+        } else {
+            await UserService.createUser(data);
+        }
+        setShowForm(false);
+        setSelectedUser(null);
+        fetchUsers();
+    };
 
     return (
-        <div className="user-detail">
-            <h2>{user.nombres} {user.apellidos}</h2>
-            <p><strong>Correo:</strong> {user.correoElectronico}</p>
+        <div className="user-list">
+            <button onClick={() => { setShowForm(true); setSelectedUser(null); }}>Crear Usuario</button>
+
+            {showForm && <UserForm onSubmit={handleSubmit} user={selectedUser} />}
+
+            <ul>
+                {users.map((user) => (
+                    <li key={user.id}>
+                        {user.nombres} {user.apellidos} - {user.correoElectronico}
+                        <button onClick={() => handleEdit(user)}>Editar</button>
+                        <button onClick={() => handleDelete(user.id)}>Eliminar</button>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 };
 
-export default UserDetail;
+export default UserList;

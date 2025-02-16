@@ -1,14 +1,17 @@
 .home-container {
     text-align: center;
     padding: 50px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .home-container h1 {
     font-size: 2rem;
-    color: #333;
+    color: #213547;
+    font-weight: 700;
 }
 
 .home-container p {
     font-size: 1.2rem;
     color: #555;
+    font-weight: 400;
 }
