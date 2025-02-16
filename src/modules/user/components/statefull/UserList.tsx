@@ -1,27 +1,79 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import UserCard from "./UserCard.tsx";
-import { useUsers } from "../../hooks/useUsers.ts";
+import {User} from "../../models/User.ts";
+import UserService from "../../services/UserService.ts";
+import UserForm from "./UserForm.tsx";
 import "../../styles/UserCard.css";
+import "../../styles/UserList.css";
 
 const UserList = () => {
-    const { users, removeUser } = useUsers();
-    const [deletingId, setDeletingId] = useState<number | null>(null);
+    const [users, setUsers] = useState<User[]>([]);
+    const [selectedUser, setSelectedUser] = useState<User | null>(null);
+    const [showForm, setShowForm] = useState(false);
 
-    const handleDelete = (id: number) => {
-        setDeletingId(id);
-        setTimeout(() => {
-            removeUser(id);
-        }, 500);
+    useEffect(() => {
+        fetchUsers();
+    }, []);
+
+    const fetchUsers = async () => {
+        try {
+            const data = await UserService.getUsers();
+            setUsers(data);
+        } catch (error) {
+            console.error("Error al obtener usuarios:", error);
+        }
+    };
+
+    const handleEdit = (id: number | null) => {
+        const userToEdit = users.find(user => user.id === id);
+        if (userToEdit) {
+            setSelectedUser(userToEdit);
+            setShowForm(true);
+        }
+    };
+
+    const handleCancel = () => {
+        setShowForm(false);
+        setSelectedUser(null);
+        fetchUsers(); // Recargar la lista después de cancelar
+    };
+
+    const handleSubmit = async (data: User) => {
+        try {
+            if (selectedUser) {
+                await UserService.updateUser(selectedUser.id!, data);
+            }
+            setShowForm(false);
+            setSelectedUser(null);
+            fetchUsers();
+        } catch (error) {
+            console.error("Error al actualizar usuario:", error);
+        }
     };
 
     return (
         <div className="user-list">
-            {users.length === 0 ? (
-                <p className="no-users">No hay usuarios registrados.</p>
+            <h2 className="user-form-title">
+                {showForm ? `Editando usuario/a: ${selectedUser?.nombres || ""}` : `Usuarios registrados ${users.length}`}
+            </h2>
+
+            {showForm ? (
+                <UserForm onSubmit={handleSubmit} user={selectedUser} onCancel={handleCancel} />
             ) : (
-                users.map((user) => (
-                    <UserCard key={user.id} user={user} deleting={deletingId === user.id} onDelete={handleDelete} />
-                ))
+                <div className="user-cards-container">
+                    {users.length > 0 ? (
+                        users.map((user) => (
+                            <UserCard
+                                key={user.id}
+                                user={user}
+                                onEdit={() => handleEdit(user.id)}
+                                onDelete={() => UserService.deleteUser(user.id).then(fetchUsers)}
+                            />
+                        ))
+                    ) : (
+                        <p>No hay usuarios registrados.</p>
+                    )}
+                </div>
             )}
         </div>
     );

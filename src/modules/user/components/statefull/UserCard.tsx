@@ -2,7 +2,17 @@
 import { motion } from "framer-motion";
 import "../../styles/UserCard.css";
 
-const UserCard = ({ user, deleting, onDelete }: { user: { id: number; nombres: string; apellidos: string; correoElectronico: string }, deleting: boolean, onDelete: (id: number) => void }) => {
+const UserCard = ({
+                      user,
+                      deleting,
+                      onEdit,
+                      onDelete
+                  }: {
+    user: { id: number; nombres: string; apellidos: string; correoElectronico: string },
+    deleting: boolean,
+    onEdit: (id: number) => void,
+    onDelete: (id: number) => void
+}) => {
     return (
         <motion.div
             className="user-card"
@@ -12,7 +22,10 @@ const UserCard = ({ user, deleting, onDelete }: { user: { id: number; nombres: s
         >
             <h2>{user.nombres} {user.apellidos}</h2>
             <p>{user.correoElectronico}</p>
-            <button className="delete-button" onClick={() => onDelete(user.id)}>Eliminar</button>
+            <div className="user-card-actions">
+                <button className="edit-button" onClick={() => onEdit(user.id)}>Editar</button>
+                <button className="delete-button" onClick={() => onDelete(user.id)}>Eliminar</button>
+            </div>
         </motion.div>
     );
 };
