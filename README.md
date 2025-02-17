@@ -4,6 +4,8 @@
 
 User interface that consume and api-rest with match with this contract and endpoints.
 
+<img width="1656" alt="image" src="https://github.com/user-attachments/assets/ac4ba0c6-a350-4dc3-9dbd-e21b459c70f6" />
+
 **Table of Contents**
 - [Environment requirements](#markdown-header-environment-requirements)
 - [Environment Variables](#markdown-header-environment-variables)
