@@ -41,15 +41,24 @@ Functional
 ## Installation
 
 ```bash
-Step by Step
+# Step by Step
 git clone [repository (this repository)](https://github.com/mauriciovalencia/axon-client.git)
-in your os system console do.
+
+# in your os system console do.
+
+# copy .env values to .env execution
 cp .env.example .env
+
+# install web application libs
 pnpm install
+
+# run application
 pnpm run dev
+
+# load in the web browser
 copy url eg:http://localhost:5173/ and paste in url box from the web-browser, by default Google Chrome.
 
-**Remember: pnpm install, install libs for the web aplication could run
+## Remember!, pnpm install, install libs for the web aplication could run
 ```
 
 ## Execution react application
