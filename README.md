@@ -2,7 +2,7 @@
 
 <img alt="Axon Client" src="./src/assets/logo.png" title="Axon" width="200"/>
 
-User interface that consume and api-rest with match with this contract and endpoints.
+User interface that consumes a REST API matching the USER contract (POST here: https://github.com/mauriciovalencia/axon-user-service) and its endpoints.
 
 <img width="1653" alt="image" src="https://github.com/user-attachments/assets/c4121fa1-9d54-4fa4-ba01-ada377d0fb67" />
 
