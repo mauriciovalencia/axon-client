@@ -76,9 +76,17 @@ pnpm run build
 ```
 
 ## Future Improvements
-Some UX details was not covered
-- Alerts when user wants to delete user
-- Advices when user creates or edit user sucessfull
-- Alerts on some validations
-All this and some many more could be in a new version, could be 1.3.0 or more.
+Some UX details were not covered:
+
+- Alerts when a user attempts to delete a user.
+- Notifications when a user is successfully created or edited.
+- Alerts for certain validation errors.
+- Improvements to function parameters, perhaps using more accurate models like DTOs (Data Transfer Objects) or similar.
+- Consideration of an event-driven approach in React to avoid the dreaded coupling.
+- Possibly using React Context, though I'm unsure how this application will scale.
+  However, it is a good practice for maintaining best practices as the app scales and to ensure better maintainability.
+
+All of this, and many more improvements, could be included in a future version—possibly version 1.3.0 or beyond.
+
+
 
