@@ -4,7 +4,7 @@
 
 User interface that consume and api-rest with match with this contract and endpoints.
 
-<img width="1656" alt="image" src="https://github.com/user-attachments/assets/ac4ba0c6-a350-4dc3-9dbd-e21b459c70f6" />
+<img width="1653" alt="image" src="https://github.com/user-attachments/assets/c4121fa1-9d54-4fa4-ba01-ada377d0fb67" />
 
 **Table of Contents**
 - [Environment requirements](#markdown-header-environment-requirements)
