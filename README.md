@@ -43,7 +43,7 @@ Functional
 ```bash
 # Step by Step
 
-git clone [repository (this repository)](https://github.com/mauriciovalencia/axon-client.git)
+git clone https://github.com/mauriciovalencia/axon-client.git
 
 # copy .env values to .env execution
 cp .env.example .env
