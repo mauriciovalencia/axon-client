@@ -56,7 +56,7 @@ pnpm install
 pnpm run dev
 
 # load in the web browser
-copy url eg:http://localhost:5173/ and paste in url box from the web-browser, by default Google Chrome.
+# * copy url eg:http://localhost:5173/ and paste in url box from the web-browser, by default Google Chrome.
 
 ## Remember!, pnpm install, install libs for the web aplication could run
 ```
