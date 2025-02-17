@@ -28,30 +28,47 @@ Operational
 |----------------|----------|------------|---------|--------------------------------|
 | VITE_DEBUG     | Boolean  | true/false | true    | Running on dev/prod environment |
 | VITE_APP_NAME  | String   | AxonClient| AxonClient| Name of application            |
+| VITE_PORT | Number | 5173 | 5173 | Port react application running |
 
 Functional
 
 | Name                     | Type    | Options | Default | Description                         |
 |--------------------------|---------|---------|---------|-------------------------------------|
-| VITE_API_USERS_URL       | String  |         |    http://localhost:8080/users   | User API service url                |
+| VITE_API_USERS_URL       | String  |         |    [http://localhost:8080/users ](http://localhost:8080/api/v1/users)  | User API service url                |
 | VITE_API_USER_KEY        | String  |         |    nowayjose     | Security API Key value              |
 
 
 ## Installation
 
 ```bash
+Step by Step
+git clone [repository (this repository)](https://github.com/mauriciovalencia/axon-client.git)
+in your os system console do.
+cp .env.example .env
 pnpm install
+pnpm run dev
+copy url eg:http://localhost:5173/ and paste in url box from the web-browser, by default Google Chrome.
+
+**Remember: pnpm install, install libs for the web aplication could run
 ```
 
-## Execution
+## Execution react application
 
 ```bash
-# development
-pnpm start
+# installation
+pnp install
 
-# development watch behavior 
-pnpm start:dev
+# development (prefereable)
+pnpm run dev
 
 # production
-pnpm start:prod
+pnpm run build
 ```
+
+## Future Improvements
+Some UX details was not covered
+- Alerts when user wants to delete user
+- Advices when user creates or edit user sucessfull
+- Alerts on some validations
+All this and some many more could be in a new version, could be 1.3.0 or more.
+
